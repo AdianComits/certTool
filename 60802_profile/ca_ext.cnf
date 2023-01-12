@@ -10,7 +10,7 @@ ON          = "Not Defined"
 URINAME = "Not Defined"
 URINAME2 = "Not Defined"
 URINAME3 = "Not Defined"
-
+role = "Not Defined"
 pl = "pathlen:0"
 
 default_ca		= ca
@@ -58,14 +58,20 @@ basicConstraints=critical,CA:FALSE,pathlen:0
 keyUsage=critical,digitalSignature
 subjectKeyIdentifier=hash
 authorityKeyIdentifier=keyid:always
-#subjectAltName= $ENV::URINAME
 
-#subjectAltName= @alt_name 
+1.2.3.4=critical,ASN1:UTF8String:$ENV::role 
 
-#[alt_name]
-#IP.1 = 192.168.0.1
+[ usr_cert_server ]
 
-1.2.3.4=critical,ASN1:UTF8String:roleadmin
+# These extensions are added when 'ca' signs a request for an end entity
+# certificate
+
+
+basicConstraints=critical,CA:FALSE,pathlen:0
+keyUsage=critical,digitalSignature
+subjectKeyIdentifier=hash
+authorityKeyIdentifier=keyid:always
+
 
 
 
@@ -109,35 +115,6 @@ authorityKeyIdentifier=keyid:always
 
 
 
-
-
-
-
-# PKIX recommendations harmless if included in all certificates. 
-#subjectKeyIdentifier=hash
-#authorityKeyIdentifier=keyid
-# OCSP responder certificate
-[ ocsp_cert ]
-
-#basicConstraints=critical, CA:FALSE
-#keyUsage=critical, nonRepudiation, digitalSignature, keyEncipherment
-
-# PKIX recommendations harmless if included in all certificates.
-#subjectKeyIdentifier=hash
-#authorityKeyIdentifier=keyid
-#extendedKeyUsage=OCSPSigning
-
-[ dh_cert ]
-
-# These extensions are added when 'ca' signs a request for an end entity
-# DH certificate
-
-#basicConstraints=critical, CA:FALSE
-#keyUsage=critical, keyAgreement
-
-# PKIX recommendations harmless if included in all certificates.
-#subjectKeyIdentifier=hash
-#authorityKeyIdentifier=keyid
 
 [ v3_ca ]
 

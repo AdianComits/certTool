@@ -23,6 +23,11 @@ echo "revisionno:"
 read revisionno
 echo "serialno:" 
 read serialno
+echo "certmanagement:" 
+read certmanagement
+echo "nodeid:" 
+read nodeid
+
 
 subAltName="URI:urn:fieldpki:canopen#devid?=vendorid=$vendorid&productcode=$productcode&revisionno=$revisionno&serialno=$serialno>"
 
@@ -63,8 +68,7 @@ URINAME=$subAltName $OPENSSL  x509  -startdate 19900101000000Z -enddate 99991231
 
 2)
 
-echo "certmanagement:" 
-read certmanagement
+
 # Root Bewirtschaftungs CA: create certificate directly
 openssl ecparam -name prime256v1  -genkey -out root_Bewirtschaftungs_key.key
 
@@ -78,7 +82,7 @@ openssl ecparam -name prime256v1  -genkey -out int_Bewirtschaftungs_key.key
   CN="CANopen Demo Operator 1 Intermediate CA" ON="CANopen Demo Operator 1" $OPENSSL req -config ca.cnf \
 	-new -sha256  -key int_Bewirtschaftungs_key.key -out int_Bewirtschaftungs_req.pem
 # Sign request for intermediate : end entity extensions with some variables set 
- pl="pathlen:0"   $OPENSSL  x509 -startdate 19700101000000Z -enddate 99991231235959Z -req -in int_Bewirtschaftungs_req.pem -CA root_Bewirtschaftungs.crt -CAkey root_Bewirtschaftungs_key.key -days 3600 \
+ pl="pathlen:0"   $OPENSSL  x509 -startdate 19900101000000Z -enddate 99991231235959Z -req -in int_Bewirtschaftungs_req.pem -CA root_Bewirtschaftungs.crt -CAkey root_Bewirtschaftungs_key.key -days 3600 \
 	   -extfile ca.cnf -extensions int_cert   -out int_Bewirtschaftungs.crt
 
 
@@ -88,7 +92,7 @@ openssl ecparam -name prime256v1  -genkey -out ee_Bewirtschaftungs_key.key
   CN="human-readable device identity" ON="CANopen Demo Operator 1" $OPENSSL req -config ca.cnf \
 	-new -sha256  -key ee_Bewirtschaftungs_key.key -out ee_Bewirtschaftungs_req.pem
 # Sign request for End Enity  : end entity extensions with some variables set 
- URINAME2=$subAltName2  pl="pathlen:0"  URINAME=$subAltName $OPENSSL  x509 -startdate 19700101000000Z -enddate 99991231235959Z -req -in ee_Bewirtschaftungs_req.pem -CA int_Bewirtschaftungs.crt -CAkey int_Bewirtschaftungs_key.key -days 3600 \
+ URINAME2=$subAltName2  pl="pathlen:0"  URINAME=$subAltName $OPENSSL  x509 -startdate 19900101000000Z -enddate 99991231235959Z -req -in ee_Bewirtschaftungs_req.pem -CA int_Bewirtschaftungs.crt -CAkey int_Bewirtschaftungs_key.key -days 3600 \
 	   -extfile ca.cnf -extensions usr_extra_cert   -out ee_Bewirtschaftungs.crt
 
 ;;
@@ -96,8 +100,6 @@ openssl ecparam -name prime256v1  -genkey -out ee_Bewirtschaftungs_key.key
 
 3)
 
-echo "nodeid:" 
-read nodeid
 
 # Root Anwendungs CA: create certificate directly
 openssl ecparam -name prime256v1  -genkey -out root_Anwendungs_key.key
