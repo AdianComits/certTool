@@ -5,7 +5,7 @@
 # This definition stops the following lines choking if HOME or CN
 # is undefined.
 HOME			= .
-CN			= "Not Defined"
+#CN			= "Not Defined"
 ON          = "Not Defined"
 URINAME = "Not Defined"
 URINAME2 = "Not Defined"
@@ -45,7 +45,7 @@ organizationName	= $ENV::ON
 
 
 # Take CN from environment so it can come from a script.
-commonName			= $ENV::CN
+#commonName			= $ENV::CN
 
 
 [ usr_cert ]
