@@ -1,0 +1,64 @@
+ 
+<truststore xmlns="urn:ietf:params:xml:ns:yang:ietf-truststore">
+    <certificates>
+        <name>clientcerts</name>
+        <certificate>
+            <name>clientcert</name>
+            <cert>MIIB7zCCAZagAwIBAgIUKGEp6zuVrOxH/AVICCZpfYLIgcQwCgYIKoZIzj0EAwIw
+MjEeMBwGA1UECgwVRGV2aWNlIE1hbnVmYWN0dXJlciAxMRAwDgYDVQQDDAdhZGlh
+bmNhMCAXDTkwMDEwMTAwMDAwMFoYDzk5OTkxMjMxMjM1OTU5WjA0MR8wHQYDVQQK
+DBYgRGV2aWNlIE1hbnVmYWN0dXJlciAxMREwDwYDVQQDDAhhZGlhbmNsaTBZMBMG
+ByqGSM49AgEGCCqGSM49AwEHA0IABDmRvLH9oJndm3aAVCcV/F1XXMfAaHIKPQUj
+HKxvls0ZqylPGKkLFrBu1cImA/vWw5X80nIlI1YH78hwbn7xP+ajgYUwgYIwDwYD
+VR0TAQH/BAUwAwIBADAOBgNVHQ8BAf8EBAMCB4AwHQYDVR0OBBYEFN94WakNbwWb
++d4iTSYDzSVDZHRsMB8GA1UdIwQYMBaAFBEst23fPmWfJmgvQUofJa18i0UYMB8G
+AyoDBAEB/wQVDBNUcnVzdHN0b3JlQWRtaW5Sb2xlMAoGCCqGSM49BAMCA0cAMEQC
+IBznTnMipGmXoB5itgllJ/dxwk6MhuqVDfUERzfVE9JtAiABJzGjhnOimM95ivQw
+6BfFfRf7Q6ngZFhIhyvCc7lvEg==</cert>
+        </certificate>
+                <certificate>
+            <name>clientcert2</name>
+            <cert>MIIB7TCCAZSgAwIBAgIUJJoeE00cxs9E+UrHw4qrQFUOqxswCgYIKoZIzj0EAwIw
+MjEeMBwGA1UECgwVRGV2aWNlIE1hbnVmYWN0dXJlciAxMRAwDgYDVQQDDAdhZGlh
+bmNhMCAXDTkwMDEwMTAwMDAwMFoYDzk5OTkxMjMxMjM1OTU5WjA0MR8wHQYDVQQK
+DBYgRGV2aWNlIE1hbnVmYWN0dXJlciAxMREwDwYDVQQDDAhhZGlhbmNsaTBZMBMG
+ByqGSM49AgEGCCqGSM49AwEHA0IABEkrLcZwK8s23j5guacdDPMT7pIHasi4rrBu
+W81fFHzhFGECwBxZSL4kIzfbfS1CwkW8c7vLvp3ibOzy+Ikoor+jgYMwgYAwDwYD
+VR0TAQH/BAUwAwIBADAOBgNVHQ8BAf8EBAMCB4AwHQYDVR0OBBYEFBcG2ZW6xAh2
+qHHfpd9wcEu+ZumaMB8GA1UdIwQYMBaAFBEst23fPmWfJmgvQUofJa18i0UYMB0G
+AyoDBAEB/wQTDBFLZXlzdG9yZUFkbWluUm9sZTAKBggqhkjOPQQDAgNHADBEAiA/
+Ckq3+u9nGB+U5g7tYNxnR2ju8YhR10twdykw3nWU7gIgN6sLCxvvqPz+e5AoMXY4
+Wpqr0LT/tO7n+lh7yP+dATc=</cert>
+        </certificate>
+                <certificate>
+            <name>clientcert-60802</name>
+            <cert>MIIB7TCCAZSgAwIBAgIUJJoeE00cxs9E+UrHw4qrQFUOqxswCgYIKoZIzj0EAwIw
+MjEeMBwGA1UECgwVRGV2aWNlIE1hbnVmYWN0dXJlciAxMRAwDgYDVQQDDAdhZGlh
+bmNhMCAXDTkwMDEwMTAwMDAwMFoYDzk5OTkxMjMxMjM1OTU5WjA0MR8wHQYDVQQK
+DBYgRGV2aWNlIE1hbnVmYWN0dXJlciAxMREwDwYDVQQDDAhhZGlhbmNsaTBZMBMG
+ByqGSM49AgEGCCqGSM49AwEHA0IABEkrLcZwK8s23j5guacdDPMT7pIHasi4rrBu
+W81fFHzhFGECwBxZSL4kIzfbfS1CwkW8c7vLvp3ibOzy+Ikoor+jgYMwgYAwDwYD
+VR0TAQH/BAUwAwIBADAOBgNVHQ8BAf8EBAMCB4AwHQYDVR0OBBYEFBcG2ZW6xAh2
+qHHfpd9wcEu+ZumaMB8GA1UdIwQYMBaAFBEst23fPmWfJmgvQUofJa18i0UYMB0G
+AyoDBAEB/wQTDBFLZXlzdG9yZUFkbWluUm9sZTAKBggqhkjOPQQDAgNHADBEAiA/
+Ckq3+u9nGB+U5g7tYNxnR2ju8YhR10twdykw3nWU7gIgN6sLCxvvqPz+e5AoMXY4
+Wpqr0LT/tO7n+lh7yP+dATc=</cert>
+        </certificate>
+    </certificates>
+    <certificates>
+        <name>catestcerts</name>
+        <certificate>
+            <name>cacert</name>
+            <cert>MIIBzTCCAXKgAwIBAgIUcTWm39YtfH3RCfSfcKt5diuBi/wwCgYIKoZIzj0EAwMw
+MjEeMBwGA1UECgwVRGV2aWNlIE1hbnVmYWN0dXJlciAxMRAwDgYDVQQDDAdhZGlh
+bmNhMB4XDTIyMTIxODA5NDEwOVoXDTIzMDExNzA5NDEwOVowMjEeMBwGA1UECgwV
+RGV2aWNlIE1hbnVmYWN0dXJlciAxMRAwDgYDVQQDDAdhZGlhbmNhMFkwEwYHKoZI
+zj0CAQYIKoZIzj0DAQcDQgAEBcIUXwpER6HPpVEtJ0wUeujxCzuV6drcfR5CByXq
+D777y9wZ8w8ElWEDUxCpubuLDvnXN4zIpwKs8htAJlGwe6NmMGQwHQYDVR0OBBYE
+FBEst23fPmWfJmgvQUofJa18i0UYMB8GA1UdIwQYMBaAFBEst23fPmWfJmgvQUof
+Ja18i0UYMBIGA1UdEwEB/wQIMAYBAf8CAQAwDgYDVR0PAQH/BAQDAgIEMAoGCCqG
+SM49BAMDA0kAMEYCIQCmNh2xBC4nHatLdBXkrCUmolfOQk8irY0Urp8EKdDHAQIh
+APW0WMYodrf2WAYbh7tJ5/3KI6e3Cp0DMDc3Lh+xiH7K</cert>
+        </certificate>
+    </certificates>
+</truststore>
