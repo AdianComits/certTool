@@ -58,6 +58,7 @@ sudo apt-get install libpam0g-dev
 
 sudo sysctl fs.protected_regular=0
 sudo sysrepoctl --update /home/adian/workspace/60802_files/ietf-x509-cert-to-name@2022-11-17.yang
+cd ~/workspace
 git clone https://github.com/AdianComits/certTool.git
 
 ######for connection #####
@@ -65,9 +66,9 @@ sudo sysrepocfg --edit=/home/adian/workspace/netopeer2/example_configuration/tls
 sudo sysrepocfg --edit=/home/adian/workspace/netopeer2/example_configuration/tls_truststore.xml -m ietf-truststore
 sudo sysrepocfg --edit=/home/adian/workspace/netopeer2/example_configuration/tls_listen.xml -m ietf-netconf-server
 
-connect --tls --host 10.10.10.2 --cert /home/adian/workspace/60802_files/certTool/60802_profile/ee_LDevID_client_ts_admin.crt --key /home/adian/workspace/60802_files/certTool/60802_profile/ee_LDevID_key_cli_ts_admin.key --trusted /home/adian/workspace/60802_files/certTool/60802_profile/root_LDevID.pem
-connect --tls --host 10.10.10.2 --cert /home/adian/workspace/60802_files/certTool/60802_profile/ee_LDevID_client_ks_admin.crt --key /home/adian/workspace/60802_files/certTool/60802_profile/ee_LDevID_key_cli_ks_admin.key --trusted /home/adian/workspace/60802_files/certTool/60802_profile/root_LDevID.pem
-connect --tls --host 10.10.10.2 --cert /home/adian/workspace/60802_files/certTool/60802_profile/ee_LDevID_client_um_admin.crt --key /home/adian/workspace/60802_files/certTool/60802_profile/ee_LDevID_key_cli_um_admin.key --trusted /home/adian/workspace/60802_files/certTool/60802_profile/root_LDevID.pem
+connect --tls --host 10.10.10.2 --cert /home/adian/workspace/60802_store/certifciate_store_libest/ee_LDevID_cli_ks_cert.pem --key /home/adian/workspace/60802_store/certTool/60802_profile/IAC_serv_certs/ee_LDevID_key_cli_ks_admin.key --trusted /home/adian/workspace/60802_store/certifciate_store_libest/ca.pem
+connect --tls --host 10.10.10.1 --cert /home/adian/workspace/60802_store/certifciate_store_libest/ee_LDevID_cli_ts_cert.pem --key /home/adian/workspace/60802_store/certTool/60802_profile/IAC_serv_certs/ee_LDevID_key_cli_ts_admin.key --trusted /home/adian/workspace/60802_store/certifciate_store_libest/ca.pem
+connect --tls --host 10.10.10.1 --cert /home/adian/workspace/60802_store/certifciate_store_libest/ee_LDevID_cli_um_cert.pem --key /home/adian/workspace/60802_store/certTool/60802_profile/IAC_serv_certs/ee_LDevID_key_cli_um_admin.key --trusted /home/adian/workspace/60802_store/certifciate_store_libest/ca.pem
 
 
 
@@ -75,22 +76,93 @@ connect --tls --host 10.10.10.2 --cert /home/adian/workspace/60802_files/certToo
 get-config --source candidate --filter-xpath /ietf-netconf-acm:*
 get-config --source candidate --filter-xpath /ietf-truststore:*
 get-config --source candidate --filter-xpath /ietf-keystore:*
+get-config --source candidate --filter-xpath /ietf-netconf-server:*
 get-config --source candidate --filter-xpath /ietf-netconf-server:netconf-server/listen/endpoint/tls/tls-server-parameters/client-authentication/cert-maps
 get-config --source candidate --filter-xpath /ietf-keystore:*/asymmetric-keys/asymmetric-key/private-key
 
 ###setup NACM###
 ####from ssh root user##
 connect --ssh --login root
-edit-config --target candidate --config=/home/adian/workspace/60802_files/NACM_files/NACM_groups.xml --defop replace
-edit-config --target candidate --config=/home/adian/workspace/60802_files/NACM_files/config-acm-false.xml --defop replace
+edit-config --target candidate --config=/home/adian/workspace/60802_store/certTool/NACM_files/NACM_groups.xml --defop replace
+edit-config --target candidate --config=/home/adian/workspace/60802_store/certTool/NACM_files/config-acm-false.xml --defop replace
 get-config --source candidate --filter-xpath /ietf-netconf-acm:*
 get-config --source running --filter-xpath /ietf-netconf-acm:*
 commit
 disconnect netopeer server 
 
-###testing roles defined in NACM please note that editconfig take place when there is new entry to be added when things dosnt connect please refer to original merge with sysrepo ##
-edit-config --target candidate --config=/home/adian/workspace/60802_files/NACM_files/edit-config-keystore-test.xml 
-edit-config --target candidate --config=/home/adian/workspace/60802_files/NACM_files/editconf-truststore-test.xml 
-edit-config --target candidate --config=/home/adian/workspace/60802_files/NACM_files/editconf-usermapping-test.xml
+###testing roles defined in NACM please note that editconfig take place when there is new entry to be added or deleted when things dosnt connect please refer to original merge with sysrepo ##
+edit-config --target candidate --config=/home/adian/workspace/60802_store/certifciate_store_libest/tls_keystore.xml
+edit-config --target candidate --config=/home/adian/workspace/60802_store/certifciate_store_libest/tls_truststore.xml
+edit-config --target candidate --config=/home/adian/workspace/60802_store/certifciate_store_libest/tls_listen.xml
+
+get-config --source candidate --filter-xpath /ietf-truststore:*
+get-config --source candidate --filter-xpath /ietf-keystore:*
+get-config --source candidate --filter-xpath /ietf-netconf-server:*
 
 
+
+
+###run server side of EST ###
+cd ~/workspace
+cd libest/example/server
+export LD_LIBRARY_PATH=/usr/local/ssl/lib:/usr/local/est/lib
+createCA.sh
+
+###change the CA file to have appropiate extention###
+sudo runserver.sh
+
+###run client side of EST ###
+cd ~/workspace
+cd libest/example/client
+export LD_LIBRARY_PATH=/usr/local/ssl/lib:/usr/local/est/lib
+export EST_OPENSSL_CACERT=../server/estCA/cacert.crt
+
+sudo -E ./estclient -e -s 127.0.0.1 -p 8085 -u estuser -h estpwd -y /home/adian/workspace/60802_store/certTool/60802_profile/IAC_serv_certs/ee_LDevID_req_cli_ks_admin.pem -o /home/adian/workspace/60802_store/certifciate_store_libest --pem-output
+cd ~/workspace/60802_store/certifciate_store_libest
+mv cert-0-0.pem ee_LDevID_cli_ks_cert.pem 
+
+sudo -E ./estclient -e -s 127.0.0.1 -p 8085 -u estuser -h estpwd -y /home/adian/workspace/60802_store/certTool/60802_profile/IAC_serv_certs/ee_LDevID_req_cli_ts_admin.pem -o /home/adian/workspace/60802_store/certifciate_store_libest --pem-output
+cd ~/workspace/60802_store/certifciate_store_libest
+mv cert-0-0.pem ee_LDevID_cli_ts_cert.pem 
+
+sudo -E ./estclient -e -s 127.0.0.1 -p 8085 -u estuser -h estpwd -y /home/adian/workspace/60802_store/certTool/60802_profile/IAC_serv_certs/ee_LDevID_req_cli_um_admin.pem -o /home/adian/workspace/60802_store/certifciate_store_libest --pem-output
+cd ~/workspace/60802_store/certifciate_store_libest
+mv cert-0-0.pem ee_LDevID_cli_um_cert.pem 
+
+sudo -E ./estclient -e -s 127.0.0.1 -p 8085 -u estuser -h estpwd -y /home/adian/workspace/60802_store/certTool/60802_profile/IAC_serv_certs/ee_LDevID_req1_serv.pem -o /home/adian/workspace/60802_store/certifciate_store_libest --pem-output
+cd ~/workspace/60802_store/certifciate_store_libest
+mv cert-0-0.pem ee_LDevID_server_cert.pem 
+
+sudo -E ./estclient -e -s 127.0.0.1 -p 8085 -u estuser -h estpwd -y /home/adian/workspace/60802_store/certTool/60802_profile/IAC_serv_certs/ee_LDevID_req_serv_app.pem -o /home/adian/workspace/60802_store/certifciate_store_libest --pem-output
+cd ~/workspace/60802_store/certifciate_store_libest
+mv cert-0-0.pem ee_LDevID_server_app_cert.pem 
+
+ip link add dev vm1 type veth peer name vm2
+ip addr add 10.10.10.1/24 dev vm1
+ip addr add 10.10.10.2/24 dev vm2
+ip link set dev vm1 up
+ip link set dev vm2 up
+
+###services imprint trustanchor,keys,appCert###
+connect --tls --host 10.10.10.2 --cert /home/adian/workspace/60802_store/certifciate_store_libest/ee_LDevID_cli_ks_cert.pem --key /home/adian/workspace/60802_store/certTool/60802_profile/IAC_serv_certs/ee_LDevID_key_cli_ks_admin.key --trusted /home/adian/workspace/60802_store/certifciate_store_libest/ca.pem
+
+
+
+edit-config --target candidate --config=/home/adian/workspace/60802_store/certifciate_store_libest/tls_keystore.xml
+get-config --source candidate --filter-xpath /ietf-keystore:*
+
+
+edit-config --target candidate --config=/home/adian/workspace/60802_store/certifciate_store_libest/tls_truststore.xml
+get-config --source candidate --filter-xpath /ietf-truststore:*
+
+edit-config --target candidate --config=/home/adian/workspace/60802_store/certifciate_store_libest/tls_listen.xml
+get-config --source candidate --filter-xpath /ietf-netconf-server:netconf-server/listen/endpoint/tls/tls-server-parameters/client-authentication/cert-maps
+
+connect --tls --host 10.10.10.2 --cert /home/adian/workspace/60802_store/certifciate_store_libest/ee_LDevID_cli_ks_cert.pem --key /home/adian/workspace/60802_store/certTool/60802_profile/IAC_serv_certs/ee_LDevID_key_cli_ks_admin.key --trusted /home/adian/workspace/60802_store/certifciate_store_libest/ca.pem
+
+
+##cleanup##
+edit-config --target candidate  --config=/home/adian/workspace/60802_store/certifciate_store_libest/cleanup_stores/ks_restore_servercert.xml
+edit-config --target candidate --config=/home/adian/workspace/60802_store/certifciate_store_libest/cleanup_stores/ks_clean.xml --defop replace
+edit-config --target candidate --config=/home/adian/workspace/60802_store/certifciate_store_libest/cleanup_stores/ts_clean.xml --defop replace
+edit-config --target candidate --config=/home/adian/workspace/60802_store/certifciate_store_libest/cleanup_stores/tls_listen_clean.xml --defop replace
