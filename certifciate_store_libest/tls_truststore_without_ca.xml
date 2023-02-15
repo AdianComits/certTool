@@ -1,0 +1,25 @@
+<truststore xmlns="urn:ietf:params:xml:ns:yang:ietf-truststore">
+    <certificates>
+      <name>clientcerts</name>
+      <certificate>
+        <name>clientcert</name>
+        <cert>MIIBkjCCATmgAwIBAgIBFzAKBggqhkjOPQQDAjAXMRUwEwYDVQQDDAxlc3RFeGFtcGxlQ0EwHhcNMjMwMTIwMTE1ODAyWhcNMjQwMTIwMTE1ODAyWjAOMQwwCgYDVQQDDANjbmMwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARcxQldVFXBpnhH432KpfEngzQntTk5sSIDibtuCClKDphq5spbimhvvHiPKyFDNcxhYjnYgOOMkhd+pPT5h1hXo38wfTAMBgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIHgDAdBgMqAwQBAf8EEwwRS2V5c3RvcmVBZG1pblJvbGUwHQYDVR0OBBYEFIOqB/l1znvj9spurl1jrObaXYkAMB8GA1UdIwQYMBaAFE9dyHNzrKeD14imiBd2GTOkFestMAoGCCqGSM49BAMCA0cAMEQCIAUe7A9MqJUHvvpFn21gzkMcfxad+nTE/9JBzsoKf8DzAiAILPcV2WkjSJCiO8KqF+B4bv/HYweR6cxpT2iyx0e/hg==</cert>
+      </certificate>
+      <certificate>
+        <name>clientcert2</name>
+        <cert>MIIBlTCCATygAwIBAgIBGDAKBggqhkjOPQQDAjAXMRUwEwYDVQQDDAxlc3RFeGFtcGxlQ0EwHhcNMjMwMTIwMTIyMjM1WhcNMjQwMTIwMTIyMjM1WjAOMQwwCgYDVQQDDANjbmMwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASjWByIBtOfVaXBoQ2Zle1QA0MG33bwUbZNNYe6as44AT4HjfmTTL+HkwMfoFtLSqVJUHOMKCk5sxgnmiEfg7B7o4GBMH8wDAYDVR0TAQH/BAIwADAOBgNVHQ8BAf8EBAMCB4AwHwYDKgMEAQH/BBUME1RydXN0c3RvcmVBZG1pblJvbGUwHQYDVR0OBBYEFGIWOqM//l9EhIfVEAS7JoYVk/6KMB8GA1UdIwQYMBaAFE9dyHNzrKeD14imiBd2GTOkFestMAoGCCqGSM49BAMCA0cAMEQCIDHQzezmkfSroEROVkFNKh/jROxYWQbO03d85rmYKZN6AiBwkgacJ9MhoPN+SekJK8XGqAheaUFPy1WaKmdJPlWr2g==</cert>
+      </certificate>
+      <certificate>
+        <name>clientcert3</name>
+        <cert>MIIBmDCCAT6gAwIBAgIBGTAKBggqhkjOPQQDAjAXMRUwEwYDVQQDDAxlc3RFeGFtcGxlQ0EwHhcNMjMwMTIwMTIyMzI2WhcNMjQwMTIwMTIyMzI2WjAOMQwwCgYDVQQDDANjbmMwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAQoKmxiEBLeRlFz19HhA29av5COSJ0ENVrAnC1jCRW4NV0yfuWg+4pUZB0NX754uScTd9RkMvigIYBeKLvGiKd/o4GDMIGAMAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQDAgeAMCAGAyoDBAEB/wQWDBRVc2VyTWFwcGluZ0FkbWluUm9sZTAdBgNVHQ4EFgQUmG2S1Xo/MaJgVCYg6aBOeY6oLlQwHwYDVR0jBBgwFoAUT13Ic3Osp4PXiKaIF3YZM6QV6y0wCgYIKoZIzj0EAwIDSAAwRQIgN3BJ6tyVDgKgh8M/YC6ZO+v4UKLmPpqHlX4ZrVCmgqYCIQDIftAtDDU6vrpcAkz4ovTjGn4VhUxfkY/4Co5TGzCsBg==</cert>
+      </certificate>
+    </certificates>
+    <certificates>
+      <name>cacerts</name>
+      <certificate>
+        <name/>
+        <cert/>
+      </certificate>
+    </certificates>
+  </truststore>
+ 

@@ -1,0 +1,25 @@
+<truststore xmlns="urn:ietf:params:xml:ns:yang:ietf-truststore">
+    <certificates>
+      <name>clientcerts</name>
+      <certificate>
+        <name>client1</name>
+        <cert></cert>
+      </certificate>
+      <certificate>
+        <name>client2</name>
+        <cert></cert>
+      </certificate>
+      <certificate>
+        <name>client3</name>
+        <cert></cert>
+      </certificate>
+    </certificates>
+    <certificates>
+      <name>cacerts</name>
+      <certificate>
+        <name/>
+        <cert/>
+      </certificate>
+    </certificates>
+  </truststore>
+ 
