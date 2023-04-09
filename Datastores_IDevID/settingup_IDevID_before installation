@@ -1,0 +1,7 @@
+ 
+sudo sysrepocfg --edit=/home/adian/workspace/60802_store/certTool/Datastores_IDevID/keystore_before_imprinitng.xml -m ietf-keystore
+sudo sysrepocfg --edit=/home/adian/workspace/60802_store/certTool/Datastores_IDevID/truststore_before_imprinting.xml -m ietf-truststore
+sudo sysrepocfg --edit=/home/adian/workspace/60802_store/certTool/Datastores_IDevID/tls_listen_before_imprinting.xml -m ietf-netconf-server
+
+edit-config --target running --config=/home/adian/workspace/60802_store/certTool/Datastores_IDevID/config-acm-false.xml
+edit-config --target running --config=/home/adian/workspace/60802_store/certTool/Datastores_IDevID/NACM_groups_thesis_demo.xml

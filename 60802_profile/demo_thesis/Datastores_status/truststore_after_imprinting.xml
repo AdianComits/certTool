@@ -1,0 +1,15 @@
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <truststore xmlns="urn:ietf:params:xml:ns:yang:ietf-truststore">
+    <certificates>
+      <name>cacerts</name>
+      <certificate>
+        <name>cacert</name>
+        <cert>MIIB1zCCAXygAwIBAgIUV0o2jDs9lkOsfWE6FjhmRHylMB0wCgYIKoZIzj0EAwIwNzEeMBwGA1UECgwVRGV2aWNlIE1hbnVmYWN0dXJlciAxMRUwEwYDVQQDDAxJRGV2IFJvb3QgQ0EwHhcNMjMwMzE2MjIyMTAwWhcNMjQwMzE1MjIyMTAwWjA3MR4wHAYDVQQKDBVEZXZpY2UgTWFudWZhY3R1cmVyIDExFTATBgNVBAMMDElEZXYgUm9vdCBDQTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABNhv62O3In4OH4o6rsVy8IerrrFvhUrUDDlsk9ED9ZoWfR/xTJ4ACg7CRsEDawaW1bkMER5UkVgYDNh0GNB6PvCjZjBkMB0GA1UdDgQWBBRryY+sboDUb6a3V2LP2stLt8pq/jAfBgNVHSMEGDAWgBRryY+sboDUb6a3V2LP2stLt8pq/jASBgNVHRMBAf8ECDAGAQH/AgEAMA4GA1UdDwEB/wQEAwICBDAKBggqhkjOPQQDAgNJADBGAiEAu1olHVaO5Cq3TftjbUSqGSIRRmZUWv3Dckq5xXwZK7ICIQDovOXEgkUm4afidbrw8sHdqU4W7+VgRjF1DsmRE9t2Ig==</cert>
+      </certificate>
+      <certificate>
+        <name>LDevID-CA-cert</name>
+        <cert>MIIBXzCCAQWgAwIBAgIUAr03npfVHMtX3JWf6rhQeKpgwJYwCgYIKoZIzj0EAwIwFzEVMBMGA1UEAwwMZXN0RXhhbXBsZUNBMB4XDTIzMDExNzE1MDIyMloXDTI0MDExNzE1MDIyMlowFzEVMBMGA1UEAwwMZXN0RXhhbXBsZUNBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEEXOWcjlMKyGgUPFvS8x0wSD8myQ11DusWeieN3jDtVp7o9MDeOVVkrU5Ci5wpYR84rkN1BMsCBjFuhAcG1skX6MvMC0wDAYDVR0TBAUwAwEB/zAdBgNVHQ4EFgQUT13Ic3Osp4PXiKaIF3YZM6QV6y0wCgYIKoZIzj0EAwIDSAAwRQIgSIIL/d8NTa9FllcEDtfrnPSWT/dUFVFs/VJHHVgWXHQCIQDpOIPPalu9hrtF+LMadgwU1EohXX8LYkrfgLMutdPLGQ==</cert>
+      </certificate>
+    </certificates>
+  </truststore>
+</data>

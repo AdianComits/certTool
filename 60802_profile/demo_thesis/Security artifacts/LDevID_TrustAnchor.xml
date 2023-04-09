@@ -1,0 +1,17 @@
+<truststore xmlns="urn:ietf:params:xml:ns:yang:ietf-truststore">
+    <certificates>
+      <name>cacerts</name>
+      <certificate>
+        <name>LDevID-CA-cert</name>
+        <cert>MIIBXzCCAQWgAwIBAgIUAr03npfVHMtX3JWf6rhQeKpgwJYwCgYIKoZIzj0EAwIw
+FzEVMBMGA1UEAwwMZXN0RXhhbXBsZUNBMB4XDTIzMDExNzE1MDIyMloXDTI0MDEx
+NzE1MDIyMlowFzEVMBMGA1UEAwwMZXN0RXhhbXBsZUNBMFkwEwYHKoZIzj0CAQYI
+KoZIzj0DAQcDQgAEEXOWcjlMKyGgUPFvS8x0wSD8myQ11DusWeieN3jDtVp7o9MD
+eOVVkrU5Ci5wpYR84rkN1BMsCBjFuhAcG1skX6MvMC0wDAYDVR0TBAUwAwEB/zAd
+BgNVHQ4EFgQUT13Ic3Osp4PXiKaIF3YZM6QV6y0wCgYIKoZIzj0EAwIDSAAwRQIg
+SIIL/d8NTa9FllcEDtfrnPSWT/dUFVFs/VJHHVgWXHQCIQDpOIPPalu9hrtF+LMa
+dgwU1EohXX8LYkrfgLMutdPLGQ==</cert>
+      </certificate>
+ </certificates>
+  </truststore>
+ 

@@ -1,0 +1,60 @@
+
+
+sudo sysrepocfg --edit=/home/adian/workspace/60802_store/certTool/Datastores_IDevID/keystore_before_imprinitng.xml -m ietf-keystore
+sudo sysrepocfg --edit=/home/adian/workspace/60802_store/certTool/Datastores_IDevID/truststore_before_imprinting.xml -m ietf-truststore
+sudo sysrepocfg --edit=/home/adian/workspace/60802_store/certTool/Datastores_IDevID/tls_listen_before_imprinting.xml -m ietf-netconf-server
+##connect using recovery session using connect first##
+##disable nacm by recovery session using connect first##
+edit-config --target running --config=/home/adian/workspace/60802_store/certTool/Datastores_IDevID/config-acm-false.xml
+
+
+##connect using recovery session using connect first##
+##get the truststore status before imprinting LDevID trust anchor##
+get-config --source running --filter-xpath /ietf-truststore:* --out truststore_before_imprinting.xml
+
+##imprint LDEvID trustanchor##
+edit-config --target running --config=/home/adian/workspace/60802_store/certTool/certifciate_store_libest/LDevID_TrustAnchor.xml
+
+##get truststore after LDevID imprinitng##
+get-config --source running --filter-xpath /ietf-truststore:* --out truststore_after_imprinting.xml
+
+
+##generate new CSR for new server application certificate such that it has valid ip address  and send it to libest ###
+bash ./NC_sever_Applications_demo.sh
+
+##screenshot result##
+##start libest for enrollment change CA file extention & run server##
+sudo runserver.sh
+export EST_OPENSSL_CACERT=../server/estCA/cacert.crt
+sudo -E ./estclient -e -s 127.0.0.1 -p 8085 -u estuser -h estpwd -y /home/adian/workspace/60802_store/certTool/60802_profile/demo_thesis/ee_LDevID_csr_serv_demo.pem -o /home/adian/workspace/60802_store/certTool/certifciate_store_libest
+cd /home/adian/workspace/60802_store/certTool/certifciate_store_libest
+mv cert-0-0.pem ee_LDevID_serv_app_demo.pem 
+
+###get keystore status before imprinting LDevID##
+get-config --source running --filter-xpath /ietf-keystore:* --out keystore_before_imprinitng.xml
+
+###imprint LDevID credentail inclding keys and cert for server##
+edit-config --target candidate --config=/home/adian/workspace/60802_store/certTool/certifciate_store_libest/LDevID_Keystore.xml
+
+##get keystore status after imprinting LDevID##
+get-config --source candidate --filter-xpath /ietf-keystore:* --out keystore_after_imprinitng.xml
+
+##get tls-listen status before changes##
+get-config --source running --filter-xpath /ietf-netconf-server:* --out tls_listen_before_imprinting.xml
+
+###imprint tls _listen with new LDevID cert and the cert_to_name for the newly map type##
+edit-config --target candidate --config=/home/adian/workspace/60802_store/certTool/certifciate_store_libest/LDevID_cert_to_name_plus_tls_listen_refrence.xml
+commit
+
+##get tls-listen status after imprinting LDevID and cert_t_name##
+get-config --source running --filter-xpath /ietf-netconf-server:* --out tls_listen_after_imprinting.xml
+
+##get NACM rules before suppling ACM##
+get-config --source running --filter-xpath /ietf-netconf-acm:* --out nacm_before_supllying.xml
+
+##provide NACM rules##
+edit-config --source running --config=/home/adian/workspace/60802_store/certTool/60802_profile/demo_thesis/Security artifacts/NACM_groups.xml
+
+
+
+

@@ -70,6 +70,7 @@ connect --tls --host 10.10.10.2 --cert /home/adian/workspace/60802_store/certifc
 connect --tls --host 10.10.10.1 --cert /home/adian/workspace/60802_store/certifciate_store_libest/ee_LDevID_cli_ts_cert.pem --key /home/adian/workspace/60802_store/certTool/60802_profile/IAC_serv_certs/ee_LDevID_key_cli_ts_admin.key --trusted /home/adian/workspace/60802_store/certifciate_store_libest/ca.pem
 connect --tls --host 10.10.10.1 --cert /home/adian/workspace/60802_store/certifciate_store_libest/ee_LDevID_cli_um_cert.pem --key /home/adian/workspace/60802_store/certTool/60802_profile/IAC_serv_certs/ee_LDevID_key_cli_um_admin.key --trusted /home/adian/workspace/60802_store/certifciate_store_libest/ca.pem
 
+connect-first --tls --host 10.10.10.10 --cert /home/adian/workspace/60802_store/certTool/certifciate_store_libest/ee_LDevID_cli_ks_cert.pem --key /home/adian/workspace/60802_store/certTool/60802_profile/ee_LDevID_key_cli_ks_admin.key --trusted /home/adian/workspace/60802_store/certTool/60802_profile/IDevID/root_hersteller_IDevID.pem
 
 
 ##checking services reading stores##

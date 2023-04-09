@@ -1,0 +1,117 @@
+<nacm xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-acm">
+<enable-nacm>true</enable-nacm>
+<read-default>deny</read-default>
+<write-default>deny</write-default>
+<exec-default>permit</exec-default>
+<enable-external-groups>false</enable-external-groups>
+<groups> 
+    <group> 
+    <name>TruststoreAdmin</name> 
+    <user-name>TruststoreAdminRole</user-name>
+    </group> 
+    <group> 
+    <name>KeystoreAdmin</name> 
+    <user-name>KeystoreAdminRole</user-name> 
+    </group>
+     <group> 
+    <name>UserMappingAdmin</name> 
+    <user-name>UserMappingAdminRole</user-name> 
+    </group> 
+</groups> 
+<rule-list>
+    <name>deny-write-to-NACM</name>
+    <group>*</group>
+        <rule>
+            <name>deny-write-to-NACM</name>
+            <module-name>ietf-netconf-acm</module-name>
+            <path xmlns:nacm="urn:ietf:params:xml:ns:yang:ietf-netconf-acm">/nacm:nacm</path> 
+            <access-operations>create delete update exec</access-operations> 
+            <action>deny</action>
+        </rule>
+</rule-list>
+<rule-list>
+    <name>deny-write-to-IDevID-CA</name>
+    <group>*</group>
+        <rule>
+            <name>deny-write-to-IDevID-CA</name>
+            <module-name>ietf-truststore</module-name>
+              <path xmlns:ts="urn:ietf:params:xml:ns:yang:ietf-truststore">/ts:truststore/ts:certificates/ts:certificate[ts:name = 'IDevID-CA']</path>
+            <access-operations>create delete update exec</access-operations> 
+            <action>deny</action>
+        </rule>
+</rule-list>
+<rule-list>
+    <name>deny-write-to-IDevID-key</name>
+    <group>*</group>
+        <rule>
+            <name>deny-write-to-IDevID-key</name>
+            <module-name>ietf-keystore</module-name>
+            <path xmlns:ks="urn:ietf:params:xml:ns:yang:ietf-keystore">/ks:keystore/ks:asymmetric-keys/ks:asymmetric-key[ks:name = 'IDevID-key']</path>
+            <access-operations>create delete update exec</access-operations> 
+            <action>deny</action>
+        </rule>
+</rule-list>
+<rule-list>
+    <name>deny-write-to-IDevID-certificate</name>
+    <group>*</group>
+        <rule>
+            <name>deny-write-to-IDevID-certificate</name>
+            <module-name>ietf-keystore</module-name>
+            <path xmlns:ks="urn:ietf:params:xml:ns:yang:ietf-keystore">/ks:keystore/ks:asymmetric-keys/ks:asymmetric-key/ks:certificates/ks:certificate[ks:name = 'IDevID-cert']</path>
+            <access-operations>create delete update exec</access-operations> 
+            <action>deny</action>
+        </rule>
+</rule-list>
+<rule-list>
+    <name>PermitRead for all execpt pkey of keystore</name>
+    <group>*</group>
+     <rule>
+            <name>deny-read-privatekey-keystore</name>
+            <module-name>ietf-keystore</module-name>
+            <path xmlns:ks="urn:ietf:params:xml:ns:yang:ietf-keystore">/ks:keystore/ks:asymmetric-keys/ks:asymmetric-key/ks:private-key</path>
+            <access-operations>read</access-operations> 
+            <action>deny</action>
+        </rule>
+        <rule>
+            <name>allow-read</name>
+            <module-name>*</module-name>
+            <access-operations>read</access-operations> 
+            <action>permit</action>
+        </rule>
+</rule-list>
+<rule-list>
+    <name>permitwrite for keystore</name>
+    <group>KeystoreAdmin</group>
+        <rule>
+            <name>allow-write-to-ks</name>
+            <module-name>ietf-keystore</module-name>
+            <path xmlns:ks="urn:ietf:params:xml:ns:yang:ietf-keystore">/ks:keystore</path>
+            <access-operations>create delete update exec</access-operations> 
+            <action>permit</action>
+        </rule>
+        
+</rule-list>
+<rule-list>
+    <name>permitwrite for truststore</name>
+    <group>TruststoreAdmin</group>
+        <rule>
+            <name>allow-write-to-ts</name>
+            <module-name>ietf-truststore</module-name>
+            <path xmlns:ts="urn:ietf:params:xml:ns:yang:ietf-truststore">/ts:truststore</path>
+            <access-operations>create delete update exec</access-operations> 
+            <action>permit</action>
+        </rule>
+</rule-list>
+<rule-list>
+    <name>permitwrite for cert-to-name container</name>
+    <group>UserMappingAdmin</group>
+        <rule>
+            <name>allow-write-to-c2n-container</name>
+            <module-name>ietf-netconf-server</module-name>
+            <path xmlns:ncs="urn:ietf:params:xml:ns:yang:ietf-netconf-server">/ncs:netconf-server/ncs:listen/ncs:endpoint/ncs:tls/ncs:tls-server-parameters/ncs:client-authentication/ncs:cert-maps
+            </path>
+            <access-operations>create delete update exec</access-operations> 
+            <action>permit</action>
+        </rule>
+</rule-list>
+</nacm>

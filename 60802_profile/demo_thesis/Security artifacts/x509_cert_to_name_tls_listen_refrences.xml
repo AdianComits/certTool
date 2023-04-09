@@ -1,0 +1,28 @@
+<netconf-server xmlns="urn:ietf:params:xml:ns:yang:ietf-netconf-server">
+    <listen>
+    <endpoint>
+        <name>default-tls</name>
+        <tls>
+          <tls-server-parameters>
+            <server-identity>
+              <keystore-reference>
+                <asymmetric-key>LDevID-60802-key</asymmetric-key>
+                <certificate>LDevID-60802-cert</certificate>
+              </keystore-reference>
+            </server-identity>
+            <client-authentication>
+              <required/>
+              <cert-maps>
+                 <cert-to-name>
+                                <id>1</id>
+                                <fingerprint>02:44:F8:11:D9:7E:A0:4E:23:0D:41:93:E2:7B:8D:1F:CB:10:4C:8C:3F</fingerprint>
+                                <map-type xmlns:x509c2n="urn:ietf:params:xml:ns:yang:ietf-x509-cert-to-name">x509c2n:object-identifier</map-type>
+                </cert-to-name>
+                </cert-maps>    
+            </client-authentication>
+          </tls-server-parameters>
+        </tls>
+      </endpoint>
+    </listen>
+</netconf-server>
+
